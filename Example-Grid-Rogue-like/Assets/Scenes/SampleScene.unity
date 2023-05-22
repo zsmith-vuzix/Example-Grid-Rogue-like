@@ -236,8 +236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9d28c80b11fc349b8b77dbf78fdfc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultTile1: {fileID: 8087812866598816253, guid: 2289fc772f6f5fe49b2957bf48c41824, type: 3}
-  defaultTile2: {fileID: 4081303423046112192, guid: 1857e55d52008f84780a254de19f96a9, type: 3}
+  defaultTile1: {fileID: 2658615823986384222, guid: bc56510690c3c27499943abb510272c0, type: 3}
+  defaultTile2: {fileID: 737808890959074860, guid: 4082253e38eccab4e9869b5f22e88eb3, type: 3}
 --- !u!4 &1070525568
 Transform:
   m_ObjectHideFlags: 0
