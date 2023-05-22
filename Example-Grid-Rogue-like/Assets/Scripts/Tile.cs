@@ -6,6 +6,8 @@ public class Tile : MonoBehaviour
 {
     [SerializeField] GameObject _highlight;
     // Start is called before the first frame update
+    public Unit unit;
+    public Building building;
     void Start()
     {
         
@@ -23,5 +25,16 @@ public class Tile : MonoBehaviour
     private void OnMouseExit()
     {
         _highlight.SetActive(false);
+    }
+    private void OnMouseUp()
+    {
+        if (unit != null)
+        {
+            unit.showMoves();
+        }
+        else if (building != null)
+        {
+            building.showBuildable();
+        }
     }
 }
