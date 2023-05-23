@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
-    public static Grid instance;
+    public static Grid Instance;
     public int _x;
     public int _y;
     public Dictionary<Vector2, Tile> _tiles;
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
         GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
     }
     private void OnDestroy()
@@ -55,8 +55,9 @@ public class Grid : MonoBehaviour
     {
         if (state == GameState.GenerateBoard)
         {
-            Grid grid = new Grid(3, 3, GameManager.Instance.defaultTile1, GameManager.Instance.defaultTile2);
-            grid.AddBuilding(new Vector2(1, 1), GameManager.Instance.defaultBuilding);
+            //TODO Case for each level
+            Grid.Instance = new Grid(3, 3, GameManager.Instance.defaultTile1, GameManager.Instance.defaultTile2);
+            Grid.Instance.AddBuilding(new Vector2(1, 1), GameManager.Instance.defaultBuilding);
             GameManager.Instance.UpdateGameState(GameState.PlayerTurn);
         }
     }

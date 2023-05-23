@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -37,15 +38,39 @@ public class GameManager : MonoBehaviour
             case GameState.GenerateBoard:
                 break;
             case GameState.PlayerTurn:
+                HandlePlayerTurn();
                 break;
             case GameState.EnemeyTurn:
+                HandleEnemyTurn();
                 break;
             case GameState.RoundOver:
+                ShowRoundOverScreen();
                 break;
             case GameState.GameOver:
+                ShowGameOverScreen();
                 break;
         }
         OnGameStateChanged?.Invoke(newState);
+    }
+
+    private void ShowGameOverScreen()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void ShowRoundOverScreen()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void HandleEnemyTurn()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void HandlePlayerTurn()
+    {
+        throw new NotImplementedException();
     }
 }
 public enum GameState
