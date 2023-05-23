@@ -15,7 +15,7 @@ public class Unit : MonoBehaviour
     {
         
     }
-    public void showMove()
+    public void showMoves()
     {
 
     }
