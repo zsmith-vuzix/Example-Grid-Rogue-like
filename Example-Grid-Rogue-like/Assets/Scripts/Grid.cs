@@ -21,8 +21,8 @@ public class Grid : MonoBehaviour
 
     public Grid(int x, int y, Tile defaultTile1, Tile defaultTile2)
     {
-        _x = x;
-        _y = y;
+        this._x = x;
+        this._y = y;
         _tiles = new Dictionary<Vector2, Tile>();
         Tile current;
         for (int xTemp = 0; xTemp < _x; xTemp++)
@@ -56,8 +56,9 @@ public class Grid : MonoBehaviour
         if (state == GameState.GenerateBoard)
         {
             //TODO Case for each level
-            Grid.Instance = new Grid(3, 3, GameManager.Instance.defaultTile1, GameManager.Instance.defaultTile2);
+            Grid.Instance = new Grid(16, 9, GameManager.Instance.defaultTile1, GameManager.Instance.defaultTile2);
             Grid.Instance.AddBuilding(new Vector2(1, 1), GameManager.Instance.defaultBuilding);
+            GameManager.Instance.cam.transform.position = new Vector3((float) Grid.Instance._x/2 -0.5f, (float)Grid.Instance._y / 2 - 0.5f, -10);
             GameManager.Instance.UpdateGameState(GameState.PlayerTurn);
         }
     }

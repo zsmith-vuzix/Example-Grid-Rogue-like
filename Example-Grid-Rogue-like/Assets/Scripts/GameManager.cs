@@ -7,6 +7,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    [SerializeField] public Transform cam;
     [SerializeField] public Tile defaultTile1;
     [SerializeField] public Tile defaultTile2;
     [SerializeField] public Building defaultBuilding;
