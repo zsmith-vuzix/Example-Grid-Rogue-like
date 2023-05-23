@@ -28,6 +28,8 @@ public class Tile : MonoBehaviour
     }
     private void OnMouseUp()
     {
+        if (GameManager.instance.state == GameState.PlayerTurn)
+            return;
         if (unit != null)
         {
             unit.showMoves();

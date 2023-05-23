@@ -49,7 +49,7 @@ public class Grid : MonoBehaviour
     public void BuildBoard()
     {
         //TODO Case for each level
-        Grid.instance = new Grid(16, 9, GameManager.instance.defaultTile1, GameManager.instance.defaultTile2);
+        Grid.instance = new Grid(8, 8, GameManager.instance.defaultTile1, GameManager.instance.defaultTile2);
         Grid.instance.AddBuilding(new Vector2(1, 1), GameManager.instance.defaultBuilding);
         GameManager.instance.cam.transform.position = new Vector3((float) Grid.instance.xMax/2 -0.5f, (float)Grid.instance.yMax / 2 - 0.5f, -10);
         GameManager.instance.UpdateGameState(GameState.PlayerTurn);

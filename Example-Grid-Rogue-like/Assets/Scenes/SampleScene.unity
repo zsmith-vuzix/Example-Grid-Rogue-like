@@ -1729,7 +1729,6 @@ MonoBehaviour:
   grid: {fileID: 1855926154}
   unitActions: {fileID: 1799359720}
   buildingOptions: {fileID: 0}
-  endTurn: {fileID: 2094228245}
   state: 0
   unitSelected: 0
 --- !u!4 &1070525568
@@ -3158,6 +3157,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2970254958298224042, guid: 2c10ea56672b975469e4ea29e9afcb45, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 178624782, guid: 9bae4c10438f9d7429ff16e3e7bde479, type: 3}
     - target: {fileID: 2970254958298224043, guid: 2c10ea56672b975469e4ea29e9afcb45, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -3272,6 +3275,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8079120983749664998, guid: ebba28fbe9a2bba4eb741404b3c6347d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 560128442, guid: 9bae4c10438f9d7429ff16e3e7bde479, type: 3}
     - target: {fileID: 8079120983749664999, guid: ebba28fbe9a2bba4eb741404b3c6347d, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -3329,6 +3336,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8561377631439894576, guid: 246c5a7179e159744b5da820b2adce7a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1601485997, guid: 9bae4c10438f9d7429ff16e3e7bde479, type: 3}
     - target: {fileID: 8561377631439894577, guid: 246c5a7179e159744b5da820b2adce7a, type: 3}
       propertyPath: m_RootOrder
       value: 6

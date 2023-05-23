@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Grid grid;
     [SerializeField] public TMP_Dropdown unitActions;
     [SerializeField] public TMP_Dropdown buildingOptions;
-    [SerializeField] public Button endTurn;
     public GameState state;
     public bool unitSelected = false;
 
@@ -103,7 +102,7 @@ public class GameManager : MonoBehaviour
     }
     public void EndTurn()
     {
-
+        UpdateGameState(GameState.EnemeyTurn);
     }
 }
 
