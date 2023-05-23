@@ -12,13 +12,13 @@ public class Grid : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        _tiles = new Dictionary<Vector2, Tile>();
     }
 
-    public Grid(int x, int y, Tile defaultTile1, Tile defaultTile2)
+    public void BaseGrid(int x, int y, Tile defaultTile1, Tile defaultTile2)
     {
         this.xMax = x;
         this.yMax = y;
-        _tiles = new Dictionary<Vector2, Tile>();
         Tile current;
         for (x = 0; x < xMax; x++)
         {
@@ -39,7 +39,7 @@ public class Grid : MonoBehaviour
     }
     public void AddUnit(Vector2 xy, Unit unit)
     {
-        _tiles[xy].unit = unit;
+        _tiles[xy].unit = Instantiate(unit, new Vector3(xy.x, xy.y), Quaternion.identity);
     }
     public void AddBuilding(Vector2 xy, Building building)
     {
@@ -49,7 +49,7 @@ public class Grid : MonoBehaviour
     public void BuildBoard()
     {
         //TODO Case for each level
-        Grid.instance = new Grid(8, 8, GameManager.instance.defaultTile1, GameManager.instance.defaultTile2);
+        BaseGrid(8, 8, GameManager.instance.defaultTile1, GameManager.instance.defaultTile2);
         Grid.instance.AddBuilding(new Vector2(1, 1), GameManager.instance.defaultBuilding);
         GameManager.instance.cam.transform.position = new Vector3((float) Grid.instance.xMax/2 -0.5f, (float)Grid.instance.yMax / 2 - 0.5f, -10);
         GameManager.instance.UpdateGameState(GameState.PlayerTurn);

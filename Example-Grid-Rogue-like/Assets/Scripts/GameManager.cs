@@ -5,6 +5,7 @@ using TMPro;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,10 +13,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Transform cam;
     [SerializeField] public Tile defaultTile1;
     [SerializeField] public Tile defaultTile2;
+    [SerializeField] public Unit infantry;
     [SerializeField] public Building defaultBuilding;
     [SerializeField] public Grid grid;
     [SerializeField] public TMP_Dropdown unitActions;
     [SerializeField] public TMP_Dropdown buildingOptions;
+    [SerializeField] public UnityEngine.UI.Button endTurn;
     public GameState state;
     public bool unitSelected = false;
 
@@ -86,7 +89,7 @@ public class GameManager : MonoBehaviour
 
     private void HandlePlayerTurn()
     {
-
+        endTurn.gameObject.SetActive(true);
     }
     public void showUnitMovement(Unit unit)
     {
@@ -102,6 +105,7 @@ public class GameManager : MonoBehaviour
     }
     public void EndTurn()
     {
+        endTurn.gameObject.SetActive(false);
         UpdateGameState(GameState.EnemeyTurn);
     }
 }
