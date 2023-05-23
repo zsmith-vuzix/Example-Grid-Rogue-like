@@ -1,23 +1,31 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.Search;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager instance;
     [SerializeField] public Transform cam;
     [SerializeField] public Tile defaultTile1;
     [SerializeField] public Tile defaultTile2;
     [SerializeField] public Building defaultBuilding;
-    public GameState State;
+    [SerializeField] public Grid grid;
+    [SerializeField] public TMP_Dropdown unitActions;
+    [SerializeField] public TMP_Dropdown buildingOptions;
+    [SerializeField] public Button endTurn;
+    public GameState state;
+    public bool unitSelected = false;
+
     public static event Action<GameState> OnGameStateChanged;
 
 
     private void Awake()
     {
-        Instance = this;
+        instance = this;
     }
 
     // Start is called before the first frame update
@@ -33,10 +41,11 @@ public class GameManager : MonoBehaviour
     }
     public void UpdateGameState(GameState newState)
     {
-        State = newState;
+        state = newState;
         switch (newState)
         {
             case GameState.GenerateBoard:
+                GenerateBoard();
                 break;
             case GameState.PlayerTurn:
                 HandlePlayerTurn();
@@ -51,29 +60,53 @@ public class GameManager : MonoBehaviour
                 ShowGameOverScreen();
                 break;
         }
-        OnGameStateChanged?.Invoke(newState);
+    }
+
+    private void GenerateBoard()
+    {
+        grid.BuildBoard();
     }
 
     private void ShowGameOverScreen()
     {
+        //TODO
         throw new NotImplementedException();
     }
 
     private void ShowRoundOverScreen()
     {
+        //TODO
         throw new NotImplementedException();
     }
 
     private void HandleEnemyTurn()
     {
+        //TODO
         throw new NotImplementedException();
     }
 
     private void HandlePlayerTurn()
     {
-        throw new NotImplementedException();
+
+    }
+    public void showUnitMovement(Unit unit)
+    {
+
+    }
+    public void showUnitActions()
+    {
+
+    }
+    public void ShowBuildingOptions()
+    {
+
+    }
+    public void EndTurn()
+    {
+
     }
 }
+
 public enum GameState
 {
     GenerateBoard,

@@ -4,41 +4,36 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
-    public static Grid Instance;
-    public int _x;
-    public int _y;
+    public static Grid instance;
+    public int xMax;
+    public int yMax;
     public Dictionary<Vector2, Tile> _tiles;
 
     private void Awake()
     {
-        Instance = this;
-        GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
-    }
-    private void OnDestroy()
-    {
-        GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
+        instance = this;
     }
 
     public Grid(int x, int y, Tile defaultTile1, Tile defaultTile2)
     {
-        this._x = x;
-        this._y = y;
+        this.xMax = x;
+        this.yMax = y;
         _tiles = new Dictionary<Vector2, Tile>();
         Tile current;
-        for (int xTemp = 0; xTemp < _x; xTemp++)
+        for (x = 0; x < xMax; x++)
         {
-            for (int yTemp = 0; yTemp < _y; yTemp++)
+            for (y = 0; y < yMax; y++)
             {
-                if (xTemp%2 != yTemp % 2)
+                if (x%2 != y % 2)
                 {
-                    current = Instantiate(defaultTile1, new Vector3(xTemp, yTemp), Quaternion.identity);
+                    current = Instantiate(defaultTile1, new Vector3(x, y), Quaternion.identity);
                 }
                 else
                 {
-                    current = Instantiate(defaultTile2, new Vector3(xTemp, yTemp), Quaternion.identity);
+                    current = Instantiate(defaultTile2, new Vector3(x, y), Quaternion.identity);
                 }
-                current.name = $"Tile {xTemp} {yTemp}";
-                _tiles[new Vector2(xTemp, yTemp)] = current;
+                current.name = $"Tile {x} {y}";
+                _tiles[new Vector2(x, y)] = current;
             }
         }
     }
@@ -51,15 +46,12 @@ public class Grid : MonoBehaviour
         _tiles[xy].building = Instantiate(building, new Vector3(xy.x, xy.y), Quaternion.identity);
     }
 
-    private void GameManagerOnGameStateChanged(GameState state)
+    public void BuildBoard()
     {
-        if (state == GameState.GenerateBoard)
-        {
-            //TODO Case for each level
-            Grid.Instance = new Grid(16, 9, GameManager.Instance.defaultTile1, GameManager.Instance.defaultTile2);
-            Grid.Instance.AddBuilding(new Vector2(1, 1), GameManager.Instance.defaultBuilding);
-            GameManager.Instance.cam.transform.position = new Vector3((float) Grid.Instance._x/2 -0.5f, (float)Grid.Instance._y / 2 - 0.5f, -10);
-            GameManager.Instance.UpdateGameState(GameState.PlayerTurn);
-        }
+        //TODO Case for each level
+        Grid.instance = new Grid(16, 9, GameManager.instance.defaultTile1, GameManager.instance.defaultTile2);
+        Grid.instance.AddBuilding(new Vector2(1, 1), GameManager.instance.defaultBuilding);
+        GameManager.instance.cam.transform.position = new Vector3((float) Grid.instance.xMax/2 -0.5f, (float)Grid.instance.yMax / 2 - 0.5f, -10);
+        GameManager.instance.UpdateGameState(GameState.PlayerTurn);
     }
 }
