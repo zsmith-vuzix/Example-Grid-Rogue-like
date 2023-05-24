@@ -16,11 +16,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Unit infantry;
     [SerializeField] public Building defaultBuilding;
     [SerializeField] public Grid grid;
+    [SerializeField] public TMP_Text playerMoney;
     [SerializeField] public TMP_Dropdown unitActions;
     [SerializeField] public TMP_Dropdown buildingOptions;
     [SerializeField] public UnityEngine.UI.Button endTurn;
     public GameState state;
     public Unit selectedUnit;
+    public int enemyMoney;
+    public int enemyIncome;
+    public Building[] enemybuildings;
 
     public static event Action<GameState> OnGameStateChanged;
 
@@ -89,6 +93,9 @@ public class GameManager : MonoBehaviour
 
     private void HandlePlayerTurn()
     {
+        Player.instance.money += (Player.instance.income + Player.instance.buildings.Length);
+
+        playerMoney.text = "$" + Player.instance.money.ToString();
         endTurn.gameObject.SetActive(true);
     }
     public void showUnitMovement(Unit unit)

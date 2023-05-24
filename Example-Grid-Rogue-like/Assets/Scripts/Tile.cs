@@ -23,11 +23,18 @@ public class Tile : MonoBehaviour
     }
     private void OnMouseEnter()
     {
-        _highlight.SetActive(true);
+        if (GameManager.instance.selectedUnit == null)
+        {
+            _highlight.SetActive(true);
+        }
     }
     private void OnMouseExit()
     {
-        _highlight.SetActive(false);
+        if (GameManager.instance.selectedUnit == null)
+        {
+            _highlight.SetActive(false);
+        }
+
     }
     private void OnMouseUp()
     {
@@ -45,7 +52,7 @@ public class Tile : MonoBehaviour
             GameManager.instance.selectedUnit = unit;
 
         }
-        else if (building != null)
+        else if (building != null && building.owner == BuildingState.Player)
         {
             building.showBuildable();
         }

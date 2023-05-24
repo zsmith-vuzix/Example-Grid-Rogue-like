@@ -45,17 +45,20 @@ public class Grid : MonoBehaviour
         unit.y = (int)xy.y;
         _tiles[xy].unit = Instantiate(unit, new Vector3(xy.x, xy.y), Quaternion.identity);
     }
-    public void AddBuilding(Vector2 xy, Building building)
+    public void AddBuilding(Vector2 xy, Building building, BuildingState state)
     {
         building.x = (int)xy.x;
-        building.y = (int)xy.y; _tiles[xy].building = Instantiate(building, new Vector3(xy.x, xy.y), Quaternion.identity);
+        building.y = (int)xy.y;
+        building.owner = state;
+        _tiles[xy].building = Instantiate(building, new Vector3(xy.x, xy.y), Quaternion.identity);
+
     }
 
     public void BuildBoard()
     {
         //TODO Case for each level
         BaseGrid(8, 8, GameManager.instance.defaultTile1, GameManager.instance.defaultTile2);
-        Grid.instance.AddBuilding(new Vector2(1, 1), GameManager.instance.defaultBuilding);
+        Grid.instance.AddBuilding(new Vector2(1, 1), GameManager.instance.defaultBuilding, BuildingState.Player);
         Grid.instance.AddUnit(new Vector2(2, 2), GameManager.instance.infantry);
 
         GameManager.instance.cam.transform.position = new Vector3((float) Grid.instance.xMax/2 -0.5f, (float)Grid.instance.yMax / 2 - 0.5f, -10);
