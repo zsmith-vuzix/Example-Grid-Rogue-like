@@ -40,12 +40,12 @@ public class Tile : MonoBehaviour
     {
         if (GameManager.instance.state != GameState.PlayerTurn)
             return;
-        else if (GameManager.instance.selectedUnit != null && _highlight.activeSelf)
+        else if (GameManager.instance.selectedUnit != null && _highlight.activeSelf) //highligted means it was a square the unit can move to
         {
             GameManager.instance.selectedUnit.move(x, y);
             Grid.instance.UnhighlightAll();
             GameManager.instance.selectedUnit.showActions();
-            GameManager.instance.selectedUnit = null;
+            //GameManager.instance.selectedUnit = null;
         }
         else if (unit != null && GameManager.instance.selectedUnit == null)
         {

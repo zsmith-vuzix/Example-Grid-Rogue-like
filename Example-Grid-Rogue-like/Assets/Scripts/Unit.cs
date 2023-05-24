@@ -42,14 +42,17 @@ public class Unit : MonoBehaviour
     }
     public void move(int newX, int newY)
     {
+        
         Grid.instance._tiles[new Vector2(x, y)].unit = null;
         Grid.instance._tiles[new Vector2(newX, newY)].unit = this;
+        Grid.instance._tiles[new Vector2(newX, newY)].unit.x = newX;
+        Grid.instance._tiles[new Vector2(newX, newY)].unit.y = newY;
         this.transform.position = new Vector2(newX, newY);
     }
     public void showActions()
     {
         Tile currentTile = Grid.instance._tiles[new Vector2(x, y)];
-        wait.transform.position = new Vector2(x, y);
+        wait.transform.position = new Vector2(50, 50);
         wait.gameObject.SetActive(true);
         if (EnemyInRange(range ,x, y))
         {
