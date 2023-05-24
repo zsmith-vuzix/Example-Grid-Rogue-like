@@ -3165,6 +3165,10 @@ PrefabInstance:
       value: Game Boy Advance - Advance Wars 2 Black Hole Rising - Orange Star Infantry
         & Mech
       objectReference: {fileID: 0}
+    - target: {fileID: 2502923504018666319, guid: 5ce654ec3b191d146b2cf25bfe948e50, type: 3}
+      propertyPath: movement
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3324720497006202183, guid: 5ce654ec3b191d146b2cf25bfe948e50, type: 3}
       propertyPath: m_RootOrder
       value: 7

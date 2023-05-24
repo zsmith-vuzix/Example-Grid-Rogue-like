@@ -186,6 +186,9 @@ MonoBehaviour:
   _highlight: {fileID: 1137036136356229574}
   unit: {fileID: 0}
   building: {fileID: 0}
+  resistance: 1
+  x: 0
+  y: 0
 --- !u!61 &8079120983749665000
 BoxCollider2D:
   m_ObjectHideFlags: 0

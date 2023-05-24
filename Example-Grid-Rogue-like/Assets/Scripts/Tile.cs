@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    [SerializeField] GameObject _highlight;
+    [SerializeField] public GameObject _highlight;
     // Start is called before the first frame update
     public Unit unit;
     public Building building;
+    public int resistance;
+    public int x;
+    public int y;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -28,11 +31,19 @@ public class Tile : MonoBehaviour
     }
     private void OnMouseUp()
     {
-        if (GameManager.instance.state == GameState.PlayerTurn)
+        if (GameManager.instance.state != GameState.PlayerTurn)
             return;
-        if (unit != null)
+        else if (GameManager.instance.selectedUnit != null && _highlight.activeSelf)
         {
-            unit.showMoves();
+            GameManager.instance.selectedUnit.move(x, y);
+            Grid.instance.UnhighlightAll();
+            GameManager.instance.selectedUnit = null;
+        }
+        else if (unit != null && GameManager.instance.selectedUnit == null)
+        {
+            unit.showMoves(unit.movement, x, y);
+            GameManager.instance.selectedUnit = unit;
+
         }
         else if (building != null)
         {

@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public TMP_Dropdown buildingOptions;
     [SerializeField] public UnityEngine.UI.Button endTurn;
     public GameState state;
-    public bool unitSelected = false;
+    public Unit selectedUnit;
 
     public static event Action<GameState> OnGameStateChanged;
 

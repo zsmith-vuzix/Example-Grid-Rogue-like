@@ -5,6 +5,8 @@ using UnityEngine;
 public class Building : MonoBehaviour
 {
     public Dictionary<string, int> _buildable;
+    public int x;
+    public int y;
     // Start is called before the first frame update
     void Start()
     {
