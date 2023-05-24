@@ -8,6 +8,8 @@ public class Unit : MonoBehaviour
     public int movement;
     public int x;
     public int y;
+    public bool playerUnit;
+    [SerializeField] public int range;
     [SerializeField] Button wait;
     [SerializeField] Button attack;
     [SerializeField] Button capture;
@@ -47,11 +49,52 @@ public class Unit : MonoBehaviour
     public void showActions()
     {
         Tile currentTile = Grid.instance._tiles[new Vector2(x, y)];
-
-
-
         wait.transform.position = new Vector2(x, y);
-        attack.transform.position = new Vector2(x, y);
-        capture.transform.position = new Vector2(x, y);
+        wait.gameObject.SetActive(true);
+        if (EnemyInRange(range ,x, y))
+        {
+            attack.transform.position = new Vector2(x, y);
+            attack.gameObject.SetActive(true);
+        }
+
+        if ( currentTile.building != null && currentTile.building.owner!= BuildingState.Player)
+        {
+            capture.transform.position = new Vector2(x, y);
+            capture.gameObject.SetActive(true);
+        }
+    }
+
+    public void clearActions()
+    {
+        wait.gameObject.SetActive(false);
+        attack.gameObject.SetActive(false);
+        capture.gameObject.SetActive(false);
+    }
+
+    public bool EnemyInRange(int rangeLeft, int x, int y)
+    {
+        if (rangeLeft < 0 || x < 0 || x > Grid.instance.xMax - 1 || y < 0 || y > Grid.instance.yMax - 1)
+        {
+            return false;
+        }
+
+        Tile current = Grid.instance._tiles[new Vector2(x, y)];
+        Unit unit =current.unit;
+
+        if (unit != null && unit.playerUnit == false)
+        {
+            current._highlight.SetActive(true);
+        }
+
+        rangeLeft --;
+        bool left = EnemyInRange(rangeLeft, x - 1, y);
+        bool right = EnemyInRange(rangeLeft, x + 1, y);
+        bool down = EnemyInRange(rangeLeft, x, y - 1);
+        bool up = EnemyInRange(rangeLeft, x, y + 1);
+        return left || right || down || up;
+    }
+    public void attackUnit()
+    {
+
     }
 }

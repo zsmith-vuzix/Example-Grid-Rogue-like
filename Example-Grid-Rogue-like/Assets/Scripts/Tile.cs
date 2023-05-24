@@ -57,5 +57,9 @@ public class Tile : MonoBehaviour
         {
             building.showBuildable();
         }
+        else if (GameManager.instance.attacking)
+        {
+
+        }
     }
 }

@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public int enemyMoney;
     public int enemyIncome;
     public Building[] enemybuildings;
+    public bool attacking = false;
 
     public static event Action<GameState> OnGameStateChanged;
 
