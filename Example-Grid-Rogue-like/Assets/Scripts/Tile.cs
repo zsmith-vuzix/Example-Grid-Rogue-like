@@ -44,6 +44,7 @@ public class Tile : MonoBehaviour
         {
             GameManager.instance.selectedUnit.move(x, y);
             Grid.instance.UnhighlightAll();
+            GameManager.instance.selectedUnit.showActions();
             GameManager.instance.selectedUnit = null;
         }
         else if (unit != null && GameManager.instance.selectedUnit == null)

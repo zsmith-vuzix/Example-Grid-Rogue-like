@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 8852959216291449066}
   - component: {fileID: 2502923504018666319}
   m_Layer: 0
-  m_Name: Game Boy Advance - Advance Wars 2 Black Hole Rising - Orange Star Infantry
-    & Mech
+  m_Name: Infantry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

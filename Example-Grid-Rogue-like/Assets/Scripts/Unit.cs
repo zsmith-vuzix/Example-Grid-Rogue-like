@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
     public int movement;
     public int x;
     public int y;
-    
+    [SerializeField] Button wait;
+    [SerializeField] Button attack;
+    [SerializeField] Button capture;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,5 +43,15 @@ public class Unit : MonoBehaviour
         Grid.instance._tiles[new Vector2(x, y)].unit = null;
         Grid.instance._tiles[new Vector2(newX, newY)].unit = this;
         this.transform.position = new Vector2(newX, newY);
+    }
+    public void showActions()
+    {
+        Tile currentTile = Grid.instance._tiles[new Vector2(x, y)];
+
+
+
+        wait.transform.position = new Vector2(x, y);
+        attack.transform.position = new Vector2(x, y);
+        capture.transform.position = new Vector2(x, y);
     }
 }
