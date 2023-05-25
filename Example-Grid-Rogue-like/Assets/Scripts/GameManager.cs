@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Tile defaultTile1;
     [SerializeField] public Tile defaultTile2;
     [SerializeField] public Unit infantry;
+    [SerializeField] public Unit infantryEnemy;
     [SerializeField] public Building defaultBuilding;
 
     [SerializeField] public Grid grid;
@@ -24,6 +25,9 @@ public class GameManager : MonoBehaviour
     //UI
     [SerializeField] public TMP_Text playerMoney;
     [SerializeField] public UnityEngine.UI.Button endTurn;
+    [SerializeField] public UnityEngine.UI.Button wait;
+    [SerializeField] public UnityEngine.UI.Button attack;
+    [SerializeField] public UnityEngine.UI.Button capture;
 
     //State
     public GameState state;
@@ -106,6 +110,32 @@ public class GameManager : MonoBehaviour
     {
         endTurn.gameObject.SetActive(false);
         UpdateGameState(GameState.EnemeyTurn);
+    }
+
+    //Wait button
+    public void Wait()
+    {
+        selectedUnit = null;
+        clearActions();
+    }
+
+    //Attack button
+    public void Attack()
+    {
+    }
+
+    //Capture button
+    public void Capture()
+    {
+        endTurn.gameObject.SetActive(false);
+        UpdateGameState(GameState.EnemeyTurn);
+    }
+
+    public void clearActions()
+    {
+        wait.gameObject.SetActive(false);
+        attack.gameObject.SetActive(false);
+        capture.gameObject.SetActive(false);
     }
 }
 

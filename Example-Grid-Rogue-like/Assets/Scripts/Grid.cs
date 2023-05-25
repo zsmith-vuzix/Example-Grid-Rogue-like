@@ -58,8 +58,9 @@ public class Grid : MonoBehaviour
     {
         //TODO Case for each level
         BaseGrid(8, 8, GameManager.instance.defaultTile1, GameManager.instance.defaultTile2);
-        Grid.instance.AddBuilding(new Vector2(1, 1), GameManager.instance.defaultBuilding, BuildingState.Player);
-        Grid.instance.AddUnit(new Vector2(2, 2), GameManager.instance.infantry);
+        instance.AddBuilding(new Vector2(1, 1), GameManager.instance.defaultBuilding, BuildingState.Player);
+        instance.AddUnit(new Vector2(1, 1), GameManager.instance.infantry);
+        instance.AddUnit(new Vector2(7, 7), GameManager.instance.infantryEnemy);
 
         GameManager.instance.cam.transform.position = new Vector3((float) Grid.instance.xMax/2 -0.5f, (float)Grid.instance.yMax / 2 - 0.5f, -10);
         GameManager.instance.UpdateGameState(GameState.PlayerTurn);

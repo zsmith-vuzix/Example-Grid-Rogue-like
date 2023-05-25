@@ -40,7 +40,7 @@ public class Tile : MonoBehaviour
             //GameManager.instance.selectedUnit = null;
         }
         //select a unit if one is not already selected
-        else if (unit != null && GameManager.instance.selectedUnit == null)
+        else if (unit != null && GameManager.instance.selectedUnit == null && unit.playerUnit)
         {
             unit.showMoves(unit.movement, x, y);
             GameManager.instance.selectedUnit = unit;

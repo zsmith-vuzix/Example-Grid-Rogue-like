@@ -6,11 +6,7 @@ using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
-    [SerializeField] public int range;
-    [SerializeField] Button wait;
-    [SerializeField] Button attack;
-    [SerializeField] Button capture;
-
+    public int range;
     public int movement;
     public int x;
     public int y;
@@ -46,27 +42,17 @@ public class Unit : MonoBehaviour
     {
         //can always wait
         Tile currentTile = Grid.instance.tiles[new Vector2(x, y)];
-        wait.transform.position = new Vector2(x, y);
-        wait.gameObject.SetActive(true);
+        GameManager.instance.wait.gameObject.SetActive(true);
         //Can attack?
         if (EnemyInRange(range ,x, y))
         {
-            attack.transform.position = new Vector2(x, y);
-            attack.gameObject.SetActive(true);
+            GameManager.instance.attack.gameObject.SetActive(true);
         }
         //Can capture?
         if ( currentTile.building != null && currentTile.building.owner!= BuildingState.Player)
         {
-            capture.transform.position = new Vector2(x, y);
-            capture.gameObject.SetActive(true);
+            GameManager.instance.capture.gameObject.SetActive(true);
         }
-    }
-
-    public void clearActions()
-    {
-        wait.gameObject.SetActive(false);
-        attack.gameObject.SetActive(false);
-        capture.gameObject.SetActive(false);
     }
 
     public bool EnemyInRange(int rangeLeft, int x, int y)
