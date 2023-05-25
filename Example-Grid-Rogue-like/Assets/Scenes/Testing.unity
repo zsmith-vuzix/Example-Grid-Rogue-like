@@ -801,6 +801,7 @@ MonoBehaviour:
   state: 0
   selectedUnit: {fileID: 0}
   attacking: 0
+  moving: 0
   enemyMoney: 0
   enemyIncome: 0
   enemybuildings: []
@@ -1194,6 +1195,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 886640633674473604, guid: 5ce654ec3b191d146b2cf25bfe948e50, type: 3}
+      propertyPath: m_Color.b
+      value: 0.44005343
+      objectReference: {fileID: 0}
+    - target: {fileID: 886640633674473604, guid: 5ce654ec3b191d146b2cf25bfe948e50, type: 3}
+      propertyPath: m_Color.g
+      value: 0.056069776
+      objectReference: {fileID: 0}
+    - target: {fileID: 886640633674473604, guid: 5ce654ec3b191d146b2cf25bfe948e50, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5660378
+      objectReference: {fileID: 0}
     - target: {fileID: 6122634439639180514, guid: 5ce654ec3b191d146b2cf25bfe948e50, type: 3}
       propertyPath: m_RootOrder
       value: 9

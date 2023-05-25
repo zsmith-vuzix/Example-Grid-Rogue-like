@@ -84,14 +84,16 @@ public class Unit : MonoBehaviour
     public void attackUnit(Unit enemy)
     {
         enemy.health -= damage;
-        if (enemy.health < 0)
+        if (enemy.health <= 0)
         {
             Kill(enemy);
         }
     }
     public void Kill(Unit dead)
     {
+        Grid.instance.tiles[new Vector2(dead.x, dead.y)].unit.gameObject.SetActive(false);
         Grid.instance.tiles[new Vector2(dead.x, dead.y)].unit = null;
+
         Destroy(dead);
     }
 }

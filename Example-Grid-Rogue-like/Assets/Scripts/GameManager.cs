@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public GameState state;
     public Unit selectedUnit;
     public bool attacking = false;
+    public bool moving = false;
 
     //TODO
     //Should be a seperate player
@@ -115,7 +116,6 @@ public class GameManager : MonoBehaviour
     //Wait button
     public void Wait()
     {
-        selectedUnit = null;
         clearActions();
     }
 
@@ -139,6 +139,8 @@ public class GameManager : MonoBehaviour
         attack.gameObject.SetActive(false);
         capture.gameObject.SetActive(false);
         Grid.instance.UnhighlightAll();
+        attacking = false;
+        selectedUnit = null;
     }
 }
 
