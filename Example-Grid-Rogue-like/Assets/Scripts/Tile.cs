@@ -52,9 +52,9 @@ public class Tile : MonoBehaviour
             building.showBuildable();
         }
         //if the attack action was previously selected attack this enemy unit
-        else if (GameManager.instance.attacking && !this.unit.playerUnit)
+        else if (GameManager.instance.attacking && !(this.unit == null) && !this.unit.playerUnit)
         {
-
+            GameManager.instance.selectedUnit.attackUnit(this.unit);
         }
     }
 }

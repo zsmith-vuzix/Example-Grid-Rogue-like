@@ -117,12 +117,13 @@ public class GameManager : MonoBehaviour
     {
         selectedUnit = null;
         clearActions();
-        Grid.instance.UnhighlightAll();
     }
 
     //Attack button
     public void Attack()
     {
+        attacking = true;
+
     }
 
     //Capture button
@@ -137,6 +138,7 @@ public class GameManager : MonoBehaviour
         wait.gameObject.SetActive(false);
         attack.gameObject.SetActive(false);
         capture.gameObject.SetActive(false);
+        Grid.instance.UnhighlightAll();
     }
 }
 
