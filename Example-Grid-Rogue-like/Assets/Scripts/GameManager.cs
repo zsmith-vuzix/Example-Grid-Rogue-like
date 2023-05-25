@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     public Unit selectedUnit;
     public bool attacking = false;
     public bool moving = false;
-
+    public int level = 1;
     //TODO
     //Should be a seperate player
     public int enemyMoney;
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
         switch (newState)
         {
             case GameState.GenerateBoard:
-                grid.BuildBoard();
+                grid.BuildLevel(level);
                 break;
             case GameState.PlayerTurn:
                 HandlePlayerTurn();
@@ -123,7 +123,9 @@ public class GameManager : MonoBehaviour
     public void Attack()
     {
         attacking = true;
-
+        wait.gameObject.SetActive(false);
+        attack.gameObject.SetActive(false);
+        capture.gameObject.SetActive(false);
     }
 
     //Capture button

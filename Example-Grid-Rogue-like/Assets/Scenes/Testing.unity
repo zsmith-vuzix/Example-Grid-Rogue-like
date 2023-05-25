@@ -802,6 +802,7 @@ MonoBehaviour:
   selectedUnit: {fileID: 0}
   attacking: 0
   moving: 0
+  level: 1
   enemyMoney: 0
   enemyIncome: 0
   enemybuildings: []
@@ -861,7 +862,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1220788728}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -169.21205, y: -29.52119, z: -0.3902676}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

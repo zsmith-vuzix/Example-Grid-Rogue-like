@@ -14,21 +14,21 @@ public class Unit : MonoBehaviour
     public int y;
     public bool playerUnit;
 
-    public void showMoves(int movesLeft, int x,int y)
+    public void showMoves(int movesLeft, int tempX,int tempY)
     {
         //If no moves left or invalid coordinates do nothing
-        if (movesLeft < 0 || x<0 || x> Grid.instance.xMax-1 || y < 0 || y > Grid.instance.yMax-1)
+        if (movesLeft < 0 || tempX<0 || tempX> Grid.instance.xMax-1 || tempY < 0 || tempY > Grid.instance.yMax-1 )//|| !Grid.instance.tiles[new Vector2(tempX,tempY)].unit.playerUnit)
         {
             return;
         }
         //else highligh this tile and check all neighbors
-        Tile current = Grid.instance.tiles[new Vector2(x, y)];
+        Tile current = Grid.instance.tiles[new Vector2(tempX, tempY)];
         current._highlight.SetActive(true);
         movesLeft -= current.resistance;
-        showMoves(movesLeft, x-1, y);
-        showMoves(movesLeft, x+1, y);
-        showMoves(movesLeft, x, y-1);
-        showMoves(movesLeft, x, y+1);
+        showMoves(movesLeft, tempX-1, tempY);
+        showMoves(movesLeft, tempX+1, tempY);
+        showMoves(movesLeft, tempX, tempY-1);
+        showMoves(movesLeft, tempX, tempY+1);
     }
     public void move(int newX, int newY)
     {
