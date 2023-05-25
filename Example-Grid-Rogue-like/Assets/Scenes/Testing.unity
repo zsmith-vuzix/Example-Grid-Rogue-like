@@ -1238,6 +1238,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8109799327782945295, guid: 5ce654ec3b191d146b2cf25bfe948e50, type: 3}
+      propertyPath: health
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8992624516761818295, guid: 5ce654ec3b191d146b2cf25bfe948e50, type: 3}
       propertyPath: m_Name
       value: Infantry Enemy
@@ -2090,6 +2094,14 @@ PrefabInstance:
     - target: {fileID: 8109799327782945295, guid: 5ce654ec3b191d146b2cf25bfe948e50, type: 3}
       propertyPath: range
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109799327782945295, guid: 5ce654ec3b191d146b2cf25bfe948e50, type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109799327782945295, guid: 5ce654ec3b191d146b2cf25bfe948e50, type: 3}
+      propertyPath: health
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8109799327782945295, guid: 5ce654ec3b191d146b2cf25bfe948e50, type: 3}
       propertyPath: movement
