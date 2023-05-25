@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
+    public int health;
+    public int damage;
     public int range;
     public int movement;
     public int x;
@@ -55,30 +57,41 @@ public class Unit : MonoBehaviour
         }
     }
 
-    public bool EnemyInRange(int rangeLeft, int x, int y)
+    public bool EnemyInRange(int rangeLeft, int attackX, int attackY)
     {
-        if (rangeLeft < 0 || x < 0 || x > Grid.instance.xMax - 1 || y < 0 || y > Grid.instance.yMax - 1)
+        bool here = false;
+        if (rangeLeft < 0 || attackX < 0 || attackX > Grid.instance.xMax - 1 || attackY < 0 || attackY > Grid.instance.yMax - 1)
         {
             return false;
         }
-
-        Tile current = Grid.instance.tiles[new Vector2(x, y)];
+        
+        Tile current = Grid.instance.tiles[new Vector2(attackX, attackY)];
         Unit unit =current.unit;
 
         if (unit != null && unit.playerUnit == false)
         {
             current._highlight.SetActive(true);
+            here = true;
         }
 
         rangeLeft --;
-        bool left = EnemyInRange(rangeLeft, x - 1, y);
-        bool right = EnemyInRange(rangeLeft, x + 1, y);
-        bool down = EnemyInRange(rangeLeft, x, y - 1);
-        bool up = EnemyInRange(rangeLeft, x, y + 1);
-        return left || right || down || up;
+        bool left = EnemyInRange(rangeLeft, attackX - 1, attackY);
+        bool right = EnemyInRange(rangeLeft, attackX + 1, attackY);
+        bool down = EnemyInRange(rangeLeft, attackX, attackY - 1);
+        bool up = EnemyInRange(rangeLeft, attackX, attackY + 1);
+        return left || right || down || up || here;
     }
-    public void attackUnit()
+    public void attackUnit(Unit enemy)
     {
-
+        enemy.health -= damage;
+        if (enemy.health < 0)
+        {
+            Kill(enemy);
+        }
+    }
+    public void Kill(Unit dead)
+    {
+        Grid.instance.tiles[new Vector2(dead.x, dead.y)].unit = null;
+        Destroy(dead);
     }
 }

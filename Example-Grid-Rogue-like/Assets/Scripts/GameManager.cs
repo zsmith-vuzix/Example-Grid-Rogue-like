@@ -117,6 +117,7 @@ public class GameManager : MonoBehaviour
     {
         selectedUnit = null;
         clearActions();
+        Grid.instance.UnhighlightAll();
     }
 
     //Attack button
