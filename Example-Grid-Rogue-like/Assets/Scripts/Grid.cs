@@ -7,12 +7,12 @@ public class Grid : MonoBehaviour
     public static Grid instance;
     public int xMax;
     public int yMax;
-    public Dictionary<Vector2, Tile> _tiles;
+    public Dictionary<Vector2, Tile> tiles;
 
     private void Awake()
     {
         instance = this;
-        _tiles = new Dictionary<Vector2, Tile>();
+        tiles = new Dictionary<Vector2, Tile>();
     }
 
     public void BaseGrid(int x, int y, Tile defaultTile1, Tile defaultTile2)
@@ -35,7 +35,7 @@ public class Grid : MonoBehaviour
                 current.name = $"Tile {x} {y}";
                 current.x = x;
                 current.y = y;
-                _tiles[new Vector2(x, y)] = current;
+                tiles[new Vector2(x, y)] = current;
             }
         }
     }
@@ -43,14 +43,14 @@ public class Grid : MonoBehaviour
     {
         unit.x = (int)xy.x;
         unit.y = (int)xy.y;
-        _tiles[xy].unit = Instantiate(unit, new Vector3(xy.x, xy.y), Quaternion.identity);
+        tiles[xy].unit = Instantiate(unit, new Vector3(xy.x, xy.y), Quaternion.identity);
     }
     public void AddBuilding(Vector2 xy, Building building, BuildingState state)
     {
         building.x = (int)xy.x;
         building.y = (int)xy.y;
         building.owner = state;
-        _tiles[xy].building = Instantiate(building, new Vector3(xy.x, xy.y), Quaternion.identity);
+        tiles[xy].building = Instantiate(building, new Vector3(xy.x, xy.y), Quaternion.identity);
 
     }
 
@@ -66,7 +66,7 @@ public class Grid : MonoBehaviour
     }
     public void UnhighlightAll()
     {
-        foreach (Tile tile in _tiles.Values)
+        foreach (Tile tile in tiles.Values)
         {
             tile._highlight.SetActive(false);
         }

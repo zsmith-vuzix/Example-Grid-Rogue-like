@@ -15,21 +15,10 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         instance = this;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
         income = 1;
         movementModifier = 0;
         captureModifier = 0;
         money = 0;
         buildings = new Building[0];
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

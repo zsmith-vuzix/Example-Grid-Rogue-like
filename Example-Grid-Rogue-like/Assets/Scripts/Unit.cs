@@ -1,38 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
-    public int movement;
-    public int x;
-    public int y;
-    public bool playerUnit;
     [SerializeField] public int range;
     [SerializeField] Button wait;
     [SerializeField] Button attack;
     [SerializeField] Button capture;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int movement;
+    public int x;
+    public int y;
+    public bool playerUnit;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void showMoves(int movesLeft, int x,int y)
     {
-        
+        //If no moves left or invalid coordinates do nothing
         if (movesLeft < 0 || x<0 || x> Grid.instance.xMax-1 || y < 0 || y > Grid.instance.yMax-1)
         {
             return;
         }
-        Tile current = Grid.instance._tiles[new Vector2(x, y)];
+        //else highligh this tile and check all neighbors
+        Tile current = Grid.instance.tiles[new Vector2(x, y)];
         current._highlight.SetActive(true);
         movesLeft -= current.resistance;
         showMoves(movesLeft, x-1, y);
@@ -42,24 +34,27 @@ public class Unit : MonoBehaviour
     }
     public void move(int newX, int newY)
     {
-        
-        Grid.instance._tiles[new Vector2(x, y)].unit = null;
-        Grid.instance._tiles[new Vector2(newX, newY)].unit = this;
-        Grid.instance._tiles[new Vector2(newX, newY)].unit.x = newX;
-        Grid.instance._tiles[new Vector2(newX, newY)].unit.y = newY;
-        this.transform.position = new Vector2(newX, newY);
+        Grid.instance.tiles[new Vector2(x, y)].unit = null;
+        Vector2 newXY = new Vector2(newX, newY);
+        Tile currentTile = Grid.instance.tiles[newXY];
+        currentTile.unit = this;
+        currentTile.unit.x = newX;
+        currentTile.unit.y = newY;
+        this.transform.position = newXY;
     }
     public void showActions()
     {
-        Tile currentTile = Grid.instance._tiles[new Vector2(x, y)];
-        wait.transform.position = new Vector2(50, 50);
+        //can always wait
+        Tile currentTile = Grid.instance.tiles[new Vector2(x, y)];
+        wait.transform.position = new Vector2(x, y);
         wait.gameObject.SetActive(true);
+        //Can attack?
         if (EnemyInRange(range ,x, y))
         {
             attack.transform.position = new Vector2(x, y);
             attack.gameObject.SetActive(true);
         }
-
+        //Can capture?
         if ( currentTile.building != null && currentTile.building.owner!= BuildingState.Player)
         {
             capture.transform.position = new Vector2(x, y);
@@ -81,7 +76,7 @@ public class Unit : MonoBehaviour
             return false;
         }
 
-        Tile current = Grid.instance._tiles[new Vector2(x, y)];
+        Tile current = Grid.instance.tiles[new Vector2(x, y)];
         Unit unit =current.unit;
 
         if (unit != null && unit.playerUnit == false)

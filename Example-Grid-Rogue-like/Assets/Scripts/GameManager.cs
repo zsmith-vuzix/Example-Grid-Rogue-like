@@ -11,25 +11,30 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     [SerializeField] public Transform cam;
+
+    //TODO
+    //different prefab implementation
     [SerializeField] public Tile defaultTile1;
     [SerializeField] public Tile defaultTile2;
     [SerializeField] public Unit infantry;
     [SerializeField] public Building defaultBuilding;
+
     [SerializeField] public Grid grid;
 
-
+    //UI
     [SerializeField] public TMP_Text playerMoney;
-    [SerializeField] public TMP_Dropdown unitActions;
-    [SerializeField] public TMP_Dropdown buildingOptions;
     [SerializeField] public UnityEngine.UI.Button endTurn;
 
-
+    //State
     public GameState state;
     public Unit selectedUnit;
+    public bool attacking = false;
+
+    //TODO
+    //Should be a seperate player
     public int enemyMoney;
     public int enemyIncome;
     public Building[] enemybuildings;
-    public bool attacking = false;
 
     public static event Action<GameState> OnGameStateChanged;
 
@@ -39,24 +44,20 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         UpdateGameState(GameState.GenerateBoard);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //TODO
+    //Replace placeholder methods
     public void UpdateGameState(GameState newState)
     {
         state = newState;
         switch (newState)
         {
             case GameState.GenerateBoard:
-                GenerateBoard();
+                grid.BuildBoard();
                 break;
             case GameState.PlayerTurn:
                 HandlePlayerTurn();
@@ -71,11 +72,6 @@ public class GameManager : MonoBehaviour
                 ShowGameOverScreen();
                 break;
         }
-    }
-
-    private void GenerateBoard()
-    {
-        grid.BuildBoard();
     }
 
     private void ShowGameOverScreen()
@@ -98,23 +94,14 @@ public class GameManager : MonoBehaviour
 
     private void HandlePlayerTurn()
     {
+        //Income
         Player.instance.money += (Player.instance.income + Player.instance.buildings.Length);
-
         playerMoney.text = "$" + Player.instance.money.ToString();
+        //Allow end turn button
         endTurn.gameObject.SetActive(true);
     }
-    public void showUnitMovement(Unit unit)
-    {
 
-    }
-    public void showUnitActions()
-    {
-
-    }
-    public void ShowBuildingOptions()
-    {
-
-    }
+    //End turn button
     public void EndTurn()
     {
         endTurn.gameObject.SetActive(false);
