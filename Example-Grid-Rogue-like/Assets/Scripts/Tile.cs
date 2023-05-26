@@ -37,7 +37,7 @@ public class Tile : MonoBehaviour
             GameManager.instance.selectedUnit.move(x, y);
             Grid.instance.UnhighlightAll();
             GameManager.instance.selectedUnit.showActions();
-            GameManager.instance.selectedUnit = null;
+            //GameManager.instance.selectedUnit = null;
         }
         //Unit is not selected: select it
         else if (unit != null && GameManager.instance.selectedUnit == null && unit.playerUnit)
@@ -54,7 +54,7 @@ public class Tile : MonoBehaviour
         //Attack button was selected: attack the enemy unit
         else if (GameManager.instance.attacking && !(this.unit == null) && !this.unit.playerUnit)
         {
-            GameManager.instance.selectedUnit.attackUnit(this.unit);
+            GameManager.instance.selectedUnit.attack(this.unit);
             GameManager.instance.clearActions();
         }
     }

@@ -133,8 +133,8 @@ public class GameManager : MonoBehaviour
 
     public void Capture()
     {
-        endTurn.gameObject.SetActive(false);
-        UpdateGameState(GameState.EnemeyTurn);
+        selectedUnit.Capture();
+        clearActions();
     }
 
     public void clearActions()

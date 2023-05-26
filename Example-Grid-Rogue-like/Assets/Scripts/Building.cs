@@ -8,6 +8,7 @@ public class Building : MonoBehaviour
     public int x;
     public int y;
     public BuildingState owner;
+    public int captureHealth;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,7 @@ public class Building : MonoBehaviour
         _buildable["infantry"] = 1000;
         _buildable["tank"] = 10000;
         owner = BuildingState.Nuetral;
-
+        captureHealth = 20;
     }
 
     //TODO

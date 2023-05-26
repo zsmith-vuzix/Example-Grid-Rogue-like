@@ -14,6 +14,7 @@ public class Unit : MonoBehaviour
     public int y;
     public bool playerUnit;
     public bool ready;
+    public int captureStrength;
 
     public void showMoves(int movesLeft, int tempX,int tempY)
     {
@@ -83,7 +84,7 @@ public class Unit : MonoBehaviour
         bool up = EnemyInRange(rangeLeft, attackX, attackY + 1);
         return left || right || down || up || here;
     }
-    public void attackUnit(Unit enemy)
+    public void attack(Unit enemy)
     {
         enemy.health -= damage;
         if (enemy.health <= 0)
@@ -97,5 +98,15 @@ public class Unit : MonoBehaviour
         Grid.instance.tiles[new Vector2(dead.x, dead.y)].unit = null;
 
         Destroy(dead);
+    }
+    public void Capture()
+    {
+        Building capturing = Grid.instance.tiles[new Vector2(x, y)].building;
+        capturing.captureHealth -= captureStrength;
+        if (capturing.captureHealth <= 0)
+        {
+            capturing.captureHealth = 20;
+            capturing.owner = BuildingState.Player;
+        }
     }
 }
