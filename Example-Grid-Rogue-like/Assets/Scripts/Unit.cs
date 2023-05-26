@@ -13,6 +13,7 @@ public class Unit : MonoBehaviour
     public int x;
     public int y;
     public bool playerUnit;
+    public bool ready;
 
     public void showMoves(int movesLeft, int tempX,int tempY)
     {
@@ -39,6 +40,7 @@ public class Unit : MonoBehaviour
         currentTile.unit.x = newX;
         currentTile.unit.y = newY;
         this.transform.position = newXY;
+        //ready = false;
     }
     public void showActions()
     {

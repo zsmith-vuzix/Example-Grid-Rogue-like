@@ -57,15 +57,20 @@ public class Grid : MonoBehaviour
     public void BuildLevel(int level)
     {
         //TODO functionality for different levels
+        switch (level)
+        {
+            case 1:
+                BaseGrid(8, 8, GameManager.instance.defaultTile1, GameManager.instance.defaultTile2);
+                instance.AddBuilding(new Vector2(1, 1), GameManager.instance.defaultBuilding, BuildingState.Player);
+                instance.AddUnit(new Vector2(5, 5), GameManager.instance.infantry);
+                instance.AddUnit(new Vector2(7, 7), GameManager.instance.infantryEnemy);
+                instance.AddUnit(new Vector2(6, 6), GameManager.instance.infantryEnemy);
 
-        BaseGrid(8, 8, GameManager.instance.defaultTile1, GameManager.instance.defaultTile2);
-        instance.AddBuilding(new Vector2(1, 1), GameManager.instance.defaultBuilding, BuildingState.Player);
-        instance.AddUnit(new Vector2(5, 5), GameManager.instance.infantry);
-        instance.AddUnit(new Vector2(7, 7), GameManager.instance.infantryEnemy);
-        instance.AddUnit(new Vector2(6, 6), GameManager.instance.infantryEnemy);
+                GameManager.instance.cam.transform.position = new Vector3((float)xMax / 2 - 0.5f, (float)yMax / 2 - 0.5f, -10);
+                GameManager.instance.UpdateGameState(GameState.PlayerTurn);
+                break;
+        }
 
-        GameManager.instance.cam.transform.position = new Vector3((float) xMax/2 -0.5f, (float)yMax / 2 - 0.5f, -10);
-        GameManager.instance.UpdateGameState(GameState.PlayerTurn);
     }
     public void UnhighlightAll()
     {

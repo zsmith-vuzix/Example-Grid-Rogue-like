@@ -28,30 +28,30 @@ public class Tile : MonoBehaviour
     }
     private void OnMouseUp()
     {
-        //Do nothing if it is not your turn
+        //Not your turn: do nothing
         if (GameManager.instance.state != GameState.PlayerTurn)
             return;
-        //move and show actions if a unit is already selected
+        //Unit is already selected: move it
         else if (GameManager.instance.selectedUnit != null && _highlight.activeSelf && !GameManager.instance.attacking) //highligted means it was a square the unit can move to
         {
             GameManager.instance.selectedUnit.move(x, y);
             Grid.instance.UnhighlightAll();
             GameManager.instance.selectedUnit.showActions();
-            //GameManager.instance.selectedUnit = null;
+            GameManager.instance.selectedUnit = null;
         }
-        //select a unit if one is not already selected
+        //Unit is not selected: select it
         else if (unit != null && GameManager.instance.selectedUnit == null && unit.playerUnit)
         {
             unit.showMoves(unit.movement, x, y);
             GameManager.instance.selectedUnit = unit;
 
         }
-        //if a building is selected show unit options
+        //Building you own is selected: show options
         else if (building != null && building.owner == BuildingState.Player)
         {
             building.showBuildable();
         }
-        //if the attack action was previously selected attack this enemy unit
+        //Attack button was selected: attack the enemy unit
         else if (GameManager.instance.attacking && !(this.unit == null) && !this.unit.playerUnit)
         {
             GameManager.instance.selectedUnit.attackUnit(this.unit);

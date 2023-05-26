@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public int captureModifier;
     public int money;
     public Building[] buildings;
+    public Unit[] units;
 
     private void Awake()
     {
@@ -20,5 +21,14 @@ public class Player : MonoBehaviour
         captureModifier = 0;
         money = 0;
         buildings = new Building[0];
+        units = new Unit[0];
+    }
+
+    public void RefreshUnits()
+    {
+        foreach (Unit unit in units)
+        {
+            unit.ready = true;
+        }
     }
 }

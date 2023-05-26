@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     public Unit selectedUnit;
     public bool attacking = false;
     public bool moving = false;
-    public int level = 1;
+    public int level;
     //TODO
     //Should be a seperate player
     public int enemyMoney;
@@ -51,17 +51,24 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        UpdateGameState(GameState.GenerateBoard);
+        UpdateGameState(GameState.MainMenu);
     }
 
-    //TODO
-    //Replace placeholder methods
     public void UpdateGameState(GameState newState)
     {
         state = newState;
         switch (newState)
         {
-            case GameState.GenerateBoard:
+            case GameState.MainMenu:
+                //TODO
+                UpdateGameState(GameState.GameMenu);
+                break;
+            case GameState.GameMenu:
+                //TODO
+                level = 1;
+                UpdateGameState(GameState.GenerateLevel);
+                break;
+            case GameState.GenerateLevel:
                 grid.BuildLevel(level);
                 break;
             case GameState.PlayerTurn:
@@ -99,27 +106,23 @@ public class GameManager : MonoBehaviour
 
     private void HandlePlayerTurn()
     {
-        //Income
+        Player.instance.RefreshUnits();
         Player.instance.money += (Player.instance.income + Player.instance.buildings.Length);
         playerMoney.text = "$" + Player.instance.money.ToString();
-        //Allow end turn button
         endTurn.gameObject.SetActive(true);
     }
 
-    //End turn button
     public void EndTurn()
     {
         endTurn.gameObject.SetActive(false);
         UpdateGameState(GameState.EnemeyTurn);
     }
 
-    //Wait button
     public void Wait()
     {
         clearActions();
     }
 
-    //Attack button
     public void Attack()
     {
         attacking = true;
@@ -128,7 +131,6 @@ public class GameManager : MonoBehaviour
         capture.gameObject.SetActive(false);
     }
 
-    //Capture button
     public void Capture()
     {
         endTurn.gameObject.SetActive(false);
@@ -148,7 +150,9 @@ public class GameManager : MonoBehaviour
 
 public enum GameState
 {
-    GenerateBoard,
+    MainMenu,
+    GameMenu,
+    GenerateLevel,
     PlayerTurn,
     EnemeyTurn,
     RoundOver,

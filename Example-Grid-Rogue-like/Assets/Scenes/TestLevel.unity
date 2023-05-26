@@ -855,6 +855,7 @@ MonoBehaviour:
   captureModifier: 0
   money: 0
   buildings: []
+  units: []
 --- !u!4 &1220788730
 Transform:
   m_ObjectHideFlags: 0
