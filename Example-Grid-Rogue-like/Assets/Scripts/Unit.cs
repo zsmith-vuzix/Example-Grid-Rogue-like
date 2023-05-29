@@ -16,10 +16,12 @@ public class Unit : MonoBehaviour
     public bool ready;
     public int captureStrength;
 
-    public void showMoves(int movesLeft, int tempX,int tempY)
+    public void showMoves(int movesLeft, int tempX,int tempY, bool origin)
     {
         //If no moves left or invalid coordinates do nothing
-        if (movesLeft < 0 || tempX<0 || tempX> Grid.instance.xMax-1 || tempY < 0 || tempY > Grid.instance.yMax-1 )//|| !Grid.instance.tiles[new Vector2(tempX,tempY)].unit.playerUnit)
+        if ((movesLeft < 0 || tempX<0 || tempX> Grid.instance.xMax-1 || tempY < 0 || tempY > Grid.instance.yMax-1 
+            || Grid.instance.tiles[new Vector2(tempX,tempY)].unit != null) && !origin)
+
         {
             return;
         }
@@ -27,10 +29,10 @@ public class Unit : MonoBehaviour
         Tile current = Grid.instance.tiles[new Vector2(tempX, tempY)];
         current._highlight.SetActive(true);
         movesLeft -= current.resistance;
-        showMoves(movesLeft, tempX-1, tempY);
-        showMoves(movesLeft, tempX+1, tempY);
-        showMoves(movesLeft, tempX, tempY-1);
-        showMoves(movesLeft, tempX, tempY+1);
+        showMoves(movesLeft, tempX-1, tempY, false);
+        showMoves(movesLeft, tempX+1, tempY, false);
+        showMoves(movesLeft, tempX, tempY-1, false);
+        showMoves(movesLeft, tempX, tempY+1, false);
     }
     public void move(int newX, int newY)
     {

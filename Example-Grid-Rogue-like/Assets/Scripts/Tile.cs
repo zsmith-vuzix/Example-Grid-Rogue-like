@@ -32,17 +32,16 @@ public class Tile : MonoBehaviour
         if (GameManager.instance.state != GameState.PlayerTurn)
             return;
         //Unit is already selected: move it
-        else if (GameManager.instance.selectedUnit != null && _highlight.activeSelf && !GameManager.instance.attacking) //highligted means it was a square the unit can move to
+        else if (GameManager.instance.selectedUnit != null && _highlight.activeSelf && !GameManager.instance.attacking && unit == null) //highligted means it was a square the unit can move to
         {
             GameManager.instance.selectedUnit.move(x, y);
             Grid.instance.UnhighlightAll();
             GameManager.instance.selectedUnit.showActions();
-            //GameManager.instance.selectedUnit = null;
         }
         //Unit is not selected: select it
         else if (unit != null && GameManager.instance.selectedUnit == null && unit.playerUnit)
         {
-            unit.showMoves(unit.movement, x, y);
+            unit.showMoves(unit.movement, x, y, true);
             GameManager.instance.selectedUnit = unit;
 
         }
@@ -55,7 +54,7 @@ public class Tile : MonoBehaviour
         else if (GameManager.instance.attacking && !(this.unit == null) && !this.unit.playerUnit)
         {
             GameManager.instance.selectedUnit.attack(this.unit);
-            GameManager.instance.clearActions();
+            GameManager.instance.ClearActions();
         }
     }
 }

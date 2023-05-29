@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
 
     public void Wait()
     {
-        clearActions();
+        ClearActions();
     }
 
     public void Attack()
@@ -134,17 +134,17 @@ public class GameManager : MonoBehaviour
     public void Capture()
     {
         selectedUnit.Capture();
-        clearActions();
+        ClearActions();
     }
 
-    public void clearActions()
+    public void ClearActions()
     {
         wait.gameObject.SetActive(false);
         attack.gameObject.SetActive(false);
         capture.gameObject.SetActive(false);
-        Grid.instance.UnhighlightAll();
         attacking = false;
         selectedUnit = null;
+        Grid.instance.UnhighlightAll();
     }
 }
 
