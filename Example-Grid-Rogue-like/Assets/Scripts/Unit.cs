@@ -60,6 +60,8 @@ public class Unit : MonoBehaviour
         {
             GameManager.instance.capture.gameObject.SetActive(true);
         }
+        //Can load
+        //TODO
     }
 
     public bool EnemyInRange(int rangeLeft, int attackX, int attackY)
