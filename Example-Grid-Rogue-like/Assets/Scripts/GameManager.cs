@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public UnityEngine.UI.Button wait;
     [SerializeField] public UnityEngine.UI.Button attack;
     [SerializeField] public UnityEngine.UI.Button capture;
+    [SerializeField] public UnityEngine.UI.Dropdown purchaseUnits;
 
     //State
     public GameState state;

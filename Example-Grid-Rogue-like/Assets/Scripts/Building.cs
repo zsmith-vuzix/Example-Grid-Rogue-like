@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.UI.Dropdown;
 
 public class Building : MonoBehaviour
 {
@@ -22,7 +23,11 @@ public class Building : MonoBehaviour
     //TODO
     public void showBuildable()
     {
-
+       List<string> options = new List<string>();
+        options.Add("Infantry: 1000");
+        options.Add("Tank:     10000");
+        GameManager.instance.purchaseUnits.AddOptions(options);
+        GameManager.instance.purchaseUnits.gameObject.SetActive(true);
     }
 }
 public enum BuildingState
