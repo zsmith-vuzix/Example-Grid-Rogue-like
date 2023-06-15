@@ -42,8 +42,6 @@ public class GameManager : MonoBehaviour
     public int enemyIncome;
     public Building[] enemybuildings;
 
-    public static event Action<GameState> OnGameStateChanged;
-
 
     private void Awake()
     {
