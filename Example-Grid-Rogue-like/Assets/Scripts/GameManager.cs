@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
         capture.gameObject.SetActive(false);
         attacking = false;
         selectedUnit = null;
-        Grid.instance.UnhighlightAll();
+        GameManager.instance.grid.UnhighlightAll();
     }
 }
 

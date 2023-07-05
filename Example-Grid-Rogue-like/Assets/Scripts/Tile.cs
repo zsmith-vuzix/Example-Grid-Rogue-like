@@ -35,7 +35,7 @@ public class Tile : MonoBehaviour
         else if (GameManager.instance.selectedUnit != null && _highlight.activeSelf && !GameManager.instance.attacking && unit == null) //highligted means it was a square the unit can move to
         {
             GameManager.instance.selectedUnit.move(x, y);
-            Grid.instance.UnhighlightAll();
+            GameManager.instance.grid.UnhighlightAll();
             GameManager.instance.selectedUnit.showActions();
         }
         //Unit is not selected: select it
